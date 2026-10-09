@@ -1,0 +1,1403 @@
+/* ====================================================================
+   '고양속에 취하다' 공식 축제 랜딩페이지 CSS 스타일시트
+   ==================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Gowun+Batang:wght@400;700&family=Montserrat:wght@400;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+
+/* --- 디자인 토큰 / CSS 변수 --- */
+:root {
+  --font-title: 'Gowun Batang', serif;
+  --font-body: 'Noto Sans KR', sans-serif;
+  --font-num: 'Montserrat', 'Cinzel', sans-serif;
+
+  --bg-deep-navy: #09111e;
+  --bg-navy-card: #132238;
+  --bg-glass: rgba(19, 34, 56, 0.75);
+  
+  --gold-primary: #e5b869;
+  --gold-glow: #fce38a;
+  --gold-dark: #b8860b;
+  
+  --ocean-blue: #1c7ed6;
+  --ocean-cyan: #22b8cf;
+  --sunset-orange: #f76707;
+  --crimson-red: #d94a38;
+  
+  --paper-cream: #faf5eb;
+  --paper-ticket: #f5ebd9;
+  --text-dark: #2b261f;
+  --text-white: #f8f9fa;
+  --text-muted: #a0aec0;
+  
+  --border-gold: rgba(229, 184, 105, 0.3);
+  --shadow-gold: 0 10px 30px rgba(229, 184, 105, 0.25);
+  --shadow-deep: 0 20px 40px rgba(0, 0, 0, 0.6);
+  
+  --transition-fast: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- 기본 리셋 --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-deep-navy);
+  color: var(--text-white);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* 배경 그라디언트 & 파티클 필드 */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: 
+    radial-gradient(circle at 15% 20%, rgba(28, 126, 214, 0.15) 0%, transparent 45%),
+    radial-gradient(circle at 85% 60%, rgba(247, 103, 7, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 50% 90%, rgba(229, 184, 105, 0.1) 0%, transparent 55%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* --- 공통 섹션 헤딩 --- */
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1.1rem;
+  border-radius: 50px;
+  background: rgba(229, 184, 105, 0.12);
+  border: 1px solid var(--border-gold);
+  color: var(--gold-primary);
+  font-weight: 600;
+  font-size: 0.88rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: var(--font-title);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  color: var(--text-white);
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+
+.section-title span {
+  color: var(--gold-primary);
+  background: linear-gradient(135deg, var(--gold-glow), var(--gold-primary), var(--sunset-orange));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-subtitle {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 680px;
+  margin-bottom: 3rem;
+}
+
+/* --- 네비게이션 바 (Navbar) --- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1.2rem 0;
+  transition: var(--transition-smooth);
+}
+
+.navbar.scrolled {
+  padding: 0.75rem 0;
+  background: rgba(9, 17, 30, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(229, 184, 105, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-white);
+}
+
+.nav-logo-badge {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: var(--crimson-red);
+  color: #fff;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-link {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: var(--transition-fast);
+}
+
+.nav-link:hover {
+  color: var(--gold-primary);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.6rem;
+  border-radius: 50px;
+  background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+  color: #111;
+  font-weight: 700;
+  font-size: 0.95rem;
+  box-shadow: var(--shadow-gold);
+  transition: var(--transition-smooth);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(229, 184, 105, 0.4);
+  background: linear-gradient(135deg, var(--gold-glow), var(--gold-primary));
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-gold);
+  color: var(--gold-primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: var(--transition-smooth);
+}
+
+.btn-outline:hover {
+  background: rgba(229, 184, 105, 0.15);
+  color: #fff;
+  border-color: var(--gold-primary);
+}
+
+.mobile-toggle {
+  display: none;
+  background: none;
+  color: var(--text-white);
+  font-size: 1.5rem;
+}
+
+/* --- Hero Section (히어로) --- */
+.hero {
+  min-height: 100vh;
+  padding-top: 130px;
+  padding-bottom: 80px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.hero-badge-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.badge-tag {
+  background: rgba(28, 126, 214, 0.2);
+  border: 1px solid rgba(28, 126, 214, 0.4);
+  color: #74c0fc;
+  padding: 0.35rem 0.9rem;
+  border-radius: 30px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.badge-tag.orange {
+  background: rgba(247, 103, 7, 0.2);
+  border-color: rgba(247, 103, 7, 0.4);
+  color: #ff922b;
+}
+
+.hero-title {
+  font-family: var(--font-title);
+  font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 1.2rem;
+  letter-spacing: -1px;
+}
+
+.hero-title em {
+  font-style: normal;
+  color: var(--gold-primary);
+  position: relative;
+  display: inline-block;
+}
+
+.hero-title em::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background: rgba(229, 184, 105, 0.25);
+  border-radius: 5px;
+  z-index: -1;
+}
+
+.hero-description {
+  font-size: 1.15rem;
+  color: #cbd5e0;
+  margin-bottom: 2.2rem;
+  line-height: 1.7;
+}
+
+/* 카운트다운 타이머 */
+.countdown-container {
+  background: rgba(19, 34, 56, 0.85);
+  border: 1px solid var(--border-gold);
+  border-radius: 16px;
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 2.2rem;
+  backdrop-filter: blur(10px);
+  display: inline-block;
+  width: 100%;
+  max-width: 520px;
+}
+
+.countdown-label {
+  font-size: 0.85rem;
+  color: var(--gold-primary);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.countdown-timer {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+}
+
+.timer-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  background: rgba(9, 17, 30, 0.7);
+  padding: 0.6rem 0.5rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.timer-num {
+  font-family: var(--font-num);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--text-white);
+  line-height: 1;
+}
+
+.timer-unit {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+.timer-sep {
+  font-size: 1.5rem;
+  color: var(--gold-primary);
+  font-weight: 700;
+  margin-top: -10px;
+}
+
+.hero-meta-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+  font-size: 0.98rem;
+  color: #e2e8f0;
+}
+
+.hero-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hero-meta-item i {
+  color: var(--gold-primary);
+  width: 20px;
+  text-align: center;
+}
+
+/* --- 3D 인터랙티브 티켓 카드 (Hero Ticket Card) --- */
+.ticket-stage {
+  perspective: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ticket-card-3d {
+  width: 100%;
+  max-width: 580px;
+  background: var(--paper-ticket);
+  color: var(--text-dark);
+  border-radius: 20px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(229, 184, 105, 0.25);
+  display: grid;
+  grid-template-columns: 1fr 140px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+  border: 3px solid #d4c5a9;
+}
+
+.ticket-card-3d::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z' fill='%20863000' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.ticket-main {
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 2px dashed #b89f78;
+  position: relative;
+}
+
+/* 티켓 홈 파이기 (Notch) */
+.ticket-main::before, .ticket-main::after {
+  content: '';
+  position: absolute;
+  right: -13px;
+  width: 24px;
+  height: 24px;
+  background-color: var(--bg-deep-navy);
+  border-radius: 50%;
+  z-index: 10;
+}
+.ticket-main::before { top: -12px; border-bottom: 1px solid #d4c5a9; }
+.ticket-main::after { bottom: -12px; border-top: 1px solid #d4c5a9; }
+
+.ticket-header-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+  padding-bottom: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.ticket-organizer-text {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #7a5c37;
+}
+
+.ticket-badge-pill {
+  background: var(--crimson-red);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+}
+
+.ticket-title-art {
+  font-family: var(--font-title);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #1a365d;
+  margin-bottom: 0.3rem;
+  line-height: 1.2;
+}
+
+.ticket-sub-art {
+  font-size: 0.88rem;
+  color: #744210;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+}
+
+.ticket-bottles-preview {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.2rem;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 0.6rem 0.8rem;
+  border-radius: 12px;
+  border: 1px solid rgba(184, 159, 120, 0.3);
+}
+
+.bottle-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #2c5282;
+  background: #fff;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+}
+
+.ticket-info-footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+  background: rgba(230, 218, 195, 0.4);
+  padding: 0.8rem;
+  border-radius: 10px;
+}
+
+.info-label {
+  font-weight: 700;
+  color: #4a5568;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.info-val {
+  font-weight: 700;
+  color: #1a202c;
+  font-size: 0.82rem;
+}
+
+.ticket-stub {
+  background: #ede1cb;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.stub-title {
+  font-family: var(--font-title);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a365d;
+}
+
+.stub-admission {
+  font-family: var(--font-num);
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  color: #744210;
+  margin-top: 0.2rem;
+}
+
+.barcode-mock {
+  width: 100%;
+  height: 48px;
+  background: repeating-linear-gradient(
+    90deg,
+    #000 0px, #000 2px,
+    transparent 2px, transparent 4px,
+    #000 4px, #000 7px,
+    transparent 7px, transparent 9px,
+    #000 9px, #000 10px
+  );
+  margin: 1rem 0;
+}
+
+.stub-no {
+  font-family: var(--font-num);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--crimson-red);
+}
+
+/* --- Festival Story Section (축제 소개) --- */
+.story-section {
+  padding: 100px 0;
+  position: relative;
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.story-card-box {
+  background: var(--bg-navy-card);
+  border: 1px solid var(--border-gold);
+  border-radius: 24px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-deep);
+  position: relative;
+  overflow: hidden;
+}
+
+.story-card-box::after {
+  content: 'N38';
+  position: absolute;
+  right: -20px;
+  bottom: -40px;
+  font-family: var(--font-num);
+  font-size: 12rem;
+  font-weight: 900;
+  color: rgba(229, 184, 105, 0.04);
+  pointer-events: none;
+}
+
+.story-quote {
+  font-family: var(--font-title);
+  font-size: 1.8rem;
+  color: var(--gold-primary);
+  margin-bottom: 1.2rem;
+  line-height: 1.4;
+}
+
+.story-text {
+  font-size: 1.05rem;
+  color: #cbd5e0;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.highlights-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.highlight-item {
+  background: rgba(9, 17, 30, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 1.3rem;
+  transition: var(--transition-smooth);
+}
+
+.highlight-item:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-gold);
+  background: rgba(19, 34, 56, 0.9);
+}
+
+.highlight-icon {
+  font-size: 2.2rem;
+  margin-bottom: 0.75rem;
+}
+
+.highlight-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 0.4rem;
+}
+
+.highlight-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+/* --- 3-Region Brews & Food Pairing Section --- */
+.liquor-section {
+  padding: 100px 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(19, 34, 56, 0.6) 50%, transparent 100%);
+}
+
+.region-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3.5rem;
+}
+
+.tab-btn {
+  padding: 0.9rem 2.2rem;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  font-weight: 700;
+  transition: var(--transition-smooth);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.tab-btn:hover {
+  color: var(--text-white);
+  border-color: var(--border-gold);
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+  color: #111;
+  border-color: var(--gold-glow);
+  box-shadow: var(--shadow-gold);
+}
+
+/* 주류 카드 전시 컨테이너 */
+.liquor-display-card {
+  background: var(--bg-navy-card);
+  border: 1px solid var(--border-gold);
+  border-radius: 28px;
+  padding: 3rem;
+  box-shadow: var(--shadow-deep);
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.liquor-img-wrapper {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--border-gold);
+  background: #000;
+}
+
+.liquor-img-wrapper img {
+  width: 100%;
+  height: 440px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.liquor-img-wrapper:hover img {
+  transform: scale(1.05);
+}
+
+.liquor-badge-abv {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: var(--crimson-red);
+  color: #fff;
+  font-family: var(--font-num);
+  font-weight: 800;
+  font-size: 0.95rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 30px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+.liquor-info-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.liquor-region-tag {
+  color: var(--gold-primary);
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+.liquor-title {
+  font-family: var(--font-title);
+  font-size: 2.5rem;
+  color: var(--text-white);
+  margin-bottom: 0.5rem;
+}
+
+.liquor-tagline {
+  font-size: 1.1rem;
+  color: var(--ocean-cyan);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.liquor-story {
+  color: #cbd5e0;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+/* 맛 프로필 바 (Flavor Radar Bars) */
+.flavor-profile-box {
+  background: rgba(9, 17, 30, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.flavor-profile-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--gold-primary);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.flavor-bars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.8rem;
+}
+
+.flavor-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.flavor-label-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: #a0aec0;
+}
+
+.flavor-bar-track {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.flavor-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--ocean-blue), var(--gold-primary));
+  border-radius: 4px;
+  transition: width 0.8s ease-out;
+}
+
+/* 안주 페어링 카드 */
+.pairing-food-card {
+  background: rgba(229, 184, 105, 0.08);
+  border: 1px dashed var(--border-gold);
+  border-radius: 16px;
+  padding: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.food-img-thumb {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 1px solid var(--border-gold);
+}
+
+.food-text-box h5 {
+  font-size: 1.05rem;
+  color: var(--gold-primary);
+  margin-bottom: 0.3rem;
+}
+
+.food-text-box p {
+  font-size: 0.88rem;
+  color: #e2e8f0;
+}
+
+/* --- Program Section (프로그램 안내) --- */
+.program-section {
+  padding: 100px 0;
+}
+
+.program-timeline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.8rem;
+  margin-top: 2rem;
+}
+
+.program-card {
+  background: var(--bg-navy-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 2rem;
+  position: relative;
+  transition: var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.program-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--border-gold);
+  box-shadow: var(--shadow-deep), var(--shadow-gold);
+}
+
+.program-time-badge {
+  font-family: var(--font-num);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--gold-primary);
+  background: rgba(229, 184, 105, 0.12);
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  display: inline-block;
+  margin-bottom: 1.2rem;
+}
+
+.program-icon-art {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+}
+
+.program-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 0.6rem;
+}
+
+.program-desc {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* --- Drink Quiz Section Banner --- */
+.quiz-banner {
+  background: linear-gradient(135deg, #1e3a8a, #0f172a);
+  border: 2px solid var(--border-gold);
+  border-radius: 28px;
+  padding: 3.5rem 2.5rem;
+  text-align: center;
+  margin: 80px 0;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-deep);
+}
+
+.quiz-banner::before {
+  content: '🍻';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  font-size: 10rem;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.quiz-banner-title {
+  font-family: var(--font-title);
+  font-size: 2.3rem;
+  color: var(--gold-primary);
+  margin-bottom: 1rem;
+}
+
+.quiz-banner-desc {
+  font-size: 1.05rem;
+  color: #e2e8f0;
+  max-width: 600px;
+  margin: 0 auto 2rem auto;
+}
+
+/* --- Location & Transport Section (오시는 길) --- */
+.location-section {
+  padding: 100px 0;
+  background: rgba(9, 17, 30, 0.8);
+}
+
+.location-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.address-highlight-box {
+  background: var(--bg-navy-card);
+  border: 1px solid var(--border-gold);
+  border-radius: 24px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-deep);
+}
+
+.addr-building {
+  font-family: var(--font-title);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--gold-primary);
+  margin-bottom: 0.5rem;
+}
+
+.addr-road {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 0.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.addr-land {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 1.8rem;
+}
+
+.map-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.map-btn {
+  flex: 1;
+  padding: 0.85rem;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: var(--transition-smooth);
+}
+
+.map-btn.kakao {
+  background: #ffe812;
+  color: #3c1e1e;
+}
+
+.map-btn.naver {
+  background: #03cf5d;
+  color: #fff;
+}
+
+.map-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+
+.traffic-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.traffic-item {
+  display: flex;
+  gap: 1rem;
+  background: rgba(9, 17, 30, 0.6);
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.traffic-icon {
+  font-size: 1.4rem;
+  color: var(--gold-primary);
+}
+
+.traffic-info h6 {
+  font-size: 0.95rem;
+  color: var(--text-white);
+  margin-bottom: 0.2rem;
+}
+
+.traffic-info p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* 가상 지도 카드 UI */
+.map-visual-card {
+  background: #1e293b;
+  border: 2px solid var(--border-gold);
+  border-radius: 24px;
+  height: 420px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-deep);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.map-visual-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 40% 40%, rgba(28, 126, 214, 0.2) 0%, transparent 60%),
+    linear-gradient(135deg, #0f172a, #1e293b);
+  z-index: 1;
+}
+
+.map-pin-pulse {
+  position: relative;
+  z-index: 2;
+  font-size: 4rem;
+  animation: floatPin 2s infinite ease-in-out;
+}
+
+@keyframes floatPin {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.map-pin-title {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-title);
+  font-size: 1.6rem;
+  color: var(--gold-primary);
+  margin-top: 1rem;
+}
+
+.map-pin-addr {
+  position: relative;
+  z-index: 2;
+  font-size: 0.95rem;
+  color: #cbd5e0;
+  margin-top: 0.4rem;
+}
+
+/* --- FAQ Section --- */
+.faq-section {
+  padding: 100px 0;
+}
+
+.faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.faq-item {
+  background: var(--bg-navy-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+
+.faq-question {
+  padding: 1.3rem 1.6rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.faq-question i {
+  color: var(--gold-primary);
+  transition: transform 0.3s ease;
+}
+
+.faq-item.open .faq-question i {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+  padding: 0 1.6rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.faq-item.open .faq-answer {
+  max-height: 200px;
+  padding: 0 1.6rem 1.3rem 1.6rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* --- Footer (푸터) --- */
+.footer {
+  background: #050a12;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 60px 0 30px 0;
+  font-size: 0.9rem;
+  color: #718096;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.footer-logo {
+  font-family: var(--font-title);
+  font-size: 1.6rem;
+  color: var(--text-white);
+  margin-bottom: 0.8rem;
+}
+
+.footer-warning {
+  background: rgba(217, 74, 56, 0.1);
+  border: 1px solid rgba(217, 74, 56, 0.3);
+  color: #fc8181;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  margin-top: 1rem;
+  display: inline-block;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 1.5rem;
+  text-align: center;
+  font-size: 0.82rem;
+}
+
+/* --- Modals (모달 팝업 공통) --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(5, 10, 18, 0.85);
+  backdrop-filter: blur(10px);
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  padding: 1.5rem;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-card {
+  background: var(--bg-navy-card);
+  border: 2px solid var(--border-gold);
+  border-radius: 24px;
+  width: 100%;
+  max-width: 580px;
+  padding: 2.5rem;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+  position: relative;
+  transform: translateY(30px) scale(0.95);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-overlay.active .modal-card {
+  transform: translateY(0) scale(1);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-white);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: var(--transition-fast);
+}
+
+.modal-close-btn:hover {
+  background: var(--crimson-red);
+}
+
+.form-group {
+  margin-bottom: 1.3rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--gold-primary);
+  margin-bottom: 0.4rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.85rem 1.1rem;
+  border-radius: 12px;
+  background: rgba(9, 17, 30, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-white);
+  font-size: 1rem;
+  outline: none;
+  transition: var(--transition-fast);
+}
+
+.form-input:focus {
+  border-color: var(--gold-primary);
+  box-shadow: 0 0 12px rgba(229, 184, 105, 0.3);
+}
+
+/* --- 반응형 미디어 쿼리 (Responsive Rules) --- */
+@media (max-width: 992px) {
+  .hero-grid, .story-grid, .liquor-display-card, .location-grid, .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  
+  .liquor-display-card {
+    padding: 2rem;
+  }
+  
+  .liquor-img-wrapper img {
+    height: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none;
+  }
+  
+  .mobile-toggle {
+    display: block;
+  }
+  
+  .ticket-card-3d {
+    grid-template-columns: 1fr;
+  }
+  
+  .ticket-main {
+    border-right: none;
+    border-bottom: 2px dashed #b89f78;
+  }
+  
+  .ticket-stub {
+    flex-direction: row;
+    gap: 1rem;
+  }
+  
+  .barcode-mock {
+    width: 120px;
+    height: 35px;
+    margin: 0;
+  }
+
+  .region-tabs {
+    flex-direction: column;
+  }
+
+  .flavor-bars {
+    grid-template-columns: 1fr;
+  }
+}
