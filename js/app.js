@@ -378,7 +378,7 @@ function renderGeneratedTicket(name, phone, guests, serialNo) {
         <div class="ticket-sub-art">고성 · 양양 · 속초 주류문화축제</div>
         <div style="margin:0.8rem 0; font-size:0.85rem; color:#4a5568;">
           <div><strong>성함:</strong> ${name} 님 (동반 ${guests}명)</div>
-          <div><strong>일시:</strong> 2026.11.20 (금) 15:00~20:00</div>
+          <div><strong>일시:</strong> 2026.11.20 (금) 14:00~20:00</div>
           <div><strong>장소:</strong> ${data.locationName} (${data.roadAddress})</div>
         </div>
       </div>
