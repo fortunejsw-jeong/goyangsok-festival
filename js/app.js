@@ -34,6 +34,29 @@ function initHeaderAndNav(data) {
       navbar.classList.remove('scrolled');
     }
   });
+
+  const mobileToggle = document.querySelector('.mobile-toggle');
+  const navMenu = document.querySelector('.nav-menu');
+  if (mobileToggle && navMenu) {
+    mobileToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navMenu.classList.toggle('active');
+    });
+
+    // 메뉴 항목 클릭 시 드로어 자동 닫기
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
+    });
+
+    // 외부 영역 클릭 시 드로어 닫기
+    document.addEventListener('click', (e) => {
+      if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+        navMenu.classList.remove('active');
+      }
+    });
+  }
 }
 
 /* --- 2. 히어로 섹션 데이터 바인딩 --- */
