@@ -1,0 +1,6 @@
+cloudflared.exe
+*.exe
+server.py
+server.ps1
+.DS_Store
+*.log
