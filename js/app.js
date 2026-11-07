@@ -255,20 +255,6 @@ function initLocationSection(data) {
   if (trafficList) {
     trafficList.innerHTML = `
       <div class="traffic-item">
-        <div class="traffic-icon"><i class="fas fa-bus"></i></div>
-        <div class="traffic-info">
-          <h6>셔틀 버스 안내</h6>
-          <p>${data.traffic.shuttle}</p>
-        </div>
-      </div>
-      <div class="traffic-item">
-        <div class="traffic-icon"><i class="fas fa-subway"></i></div>
-        <div class="traffic-info">
-          <h6>대중교통 안내</h6>
-          <p>${data.traffic.bus}</p>
-        </div>
-      </div>
-      <div class="traffic-item">
         <div class="traffic-icon"><i class="fas fa-parking"></i></div>
         <div class="traffic-info">
           <h6>주차장 안내</h6>
@@ -385,7 +371,7 @@ function renderGeneratedTicket(name, phone, guests, serialNo) {
         🎉 모바일 초대권 발급 완료!
       </span>
       <h3 style="font-family:var(--font-title); font-size:1.8rem; color:var(--gold-primary); margin-top:0.6rem;">
-        ${name} 님의 N38 초대권
+        ${name} 님의 초대권
       </h3>
       <p style="font-size:0.88rem; color:#cbd5e0;">행사장 입구에서 본 초대권을 보여주시면 무료 시음잔을 드립니다.</p>
     </div>
@@ -394,7 +380,7 @@ function renderGeneratedTicket(name, phone, guests, serialNo) {
     <div class="ticket-card-3d" style="cursor:default; transform:none; margin:0 auto 1.5rem auto;">
       <div class="ticket-main">
         <div class="ticket-header-line">
-          <span class="ticket-organizer-text">N38 속초문화관광재단</span>
+          <span class="ticket-organizer-text">'주향' 팀</span>
           <span class="ticket-badge-pill">모바일 초대권</span>
         </div>
         <div class="ticket-title-art">'고양속'에 취하다</div>
